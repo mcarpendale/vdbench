@@ -1,0 +1,22 @@
+dedupratio=4
+dedupunit=4k
+compratio=4
+# To increase IOPS and Throughput
+# increase threads=64; this will have a direct impact of CPU load � increase vCPU and potentially vRAM
+# - add additional drive for IO
+# - increase forthreads=32
+sd=default,openflags=directio,align=4k,threads=32
+# sd=sd1,lun=/dev/sdb1
+sd=sd2,lun=/dev/sdc1
+# sd=sd3,lun=/dev/sdd1
+
+
+
+
+# 32K 70% Read 30% Write
+wd=wd_32k_r70,rdpct=70,xfersize=32k,seekpct=0,range=(0,100),sd=sd*
+
+
+
+
+rd=rd_32k_r70-iomax,wd=wd_32k*,iorate=max,interval=1,elapsed=600,maxdata=999t,forthreads=16
